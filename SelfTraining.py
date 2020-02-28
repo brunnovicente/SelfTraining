@@ -19,7 +19,7 @@ class StandardSelfTraining:
             self._fit_iteration(X, y)
             all_labeled = (y != "unlabeled").all()
             iteration += 1
-        print(iteration,end="")
+        #print(iteration,end="")
 
     def _fit_iteration(self, X, y):
         threshold = 0.7
