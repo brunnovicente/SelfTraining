@@ -1,3 +1,6 @@
+"""
+    Implementação de Mark Laane e pode ser encontrada em https://github.com/zidik
+"""
 import sklearn
 from math import floor
 from sklearn.metrics import accuracy_score

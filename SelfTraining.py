@@ -1,3 +1,6 @@
+"""
+    Implementação de Mark Laane e pode ser encontrada em https://github.com/zidik
+"""
 import numpy as np
 
 class StandardSelfTraining:
