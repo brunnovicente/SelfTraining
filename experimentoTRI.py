@@ -87,18 +87,17 @@ for r, p in enumerate(porcentagem):
         self6.fit(X_treino, Y_treino)
         
         """ PROCESSO TRANDUTIVO """
-        
-        resultadoMLP['exe'+str(k+1)] = self1.predict(U).astype('int64')
+        resultadoMLP['exe'+str(k+1)] = np.array(self1.predict(U))
         resultadoMLP['y'+str(k+1)] = yu
-        resultadoKNN['exe'+str(k+1)] = self2.predict(U).astype('int64')
+        resultadoKNN['exe'+str(k+1)] = self2.predict(U)
         resultadoKNN['y'+str(k+1)] = yu
-        resultadoSVM['exe'+str(k+1)] = self3.predict(U).astype('int64')
+        resultadoSVM['exe'+str(k+1)] = self3.predict(U)
         resultadoSVM['y'+str(k+1)] = yu
-        resultadoRF['exe'+str(k+1)] = self4.predict(U).astype('int64')
+        resultadoRF['exe'+str(k+1)] = self4.predict(U)
         resultadoRF['y'+str(k+1)] = yu
-        resultadoNB['exe'+str(k+1)] = self5.predict(U).astype('int64')
+        resultadoNB['exe'+str(k+1)] = self5.predict(U)
         resultadoNB['y'+str(k+1)] = yu
-        resultadoLR['exe'+str(k+1)] = self6.predict(U).astype('int64')
+        resultadoLR['exe'+str(k+1)] = self6.predict(U)
         resultadoLR['y'+str(k+1)] = yu
         
         

@@ -36,7 +36,7 @@ class TriTraining:
         #maj = np.asarray([np.argmax(np.bincount(predictions[:, c])) for c in range(predictions.shape[1])])
         #return maj
         import scipy
-        return scipy.stats.mstats.mode(predictions).mode[0]
+        return scipy.stats.mstats.mode(predictions.astype('float64')).mode[0]
 
 
     def score(self, X, y_true):

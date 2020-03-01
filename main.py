@@ -22,8 +22,12 @@ y_train = np.concatenate((
 
 KNN = KNeighborsClassifier(n_neighbors=3, metric="euclidean")
 
-selfTrainer = StandardSelfTraining('KNN', KNN)
+selfTrainer = TriTraining('KNN', KNN)
 selfTrainer.fit(X_train, y_train)
+
+resultado = pd.DataFrame()
+preditas = np.array(selfTrainer.predict(U))
+resultado['predita'] = preditas
 
 print('Tranduciteve score: ', selfTrainer.score(U, yu.astype(str)))
 #print('Tranduciteve score: ', selfTrainer.score(L, y.astype(str)))
