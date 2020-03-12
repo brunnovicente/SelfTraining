@@ -19,19 +19,16 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 
 sca = MinMaxScaler()
 base = 'mnist'
-caminho = 'D:/Drive UFRN/bases/'
+modelo = 'knn'
+
+caminho = 'C:/Users/lam_ii/Documents/Bruno Vicente/basedados/'
 dados = pd.read_csv(caminho + base +'.csv')
 X = sca.fit_transform(dados.drop(['classe'], axis=1).values)
 Y = dados['classe'].values
 
-X_train, X_test, y_train, y_test = train_test_split(X,Y, train_size=0.9, test_size=0.1, stratify=Y)
-
 dados = pd.DataFrame(X)
 dados['classe'] = Y
 rotulados = [50 , 100, 150, 200, 250, 300]
-porcentagem = [0.0047, 0.0093, 0.0140, 0.0186, 0.0233, 0.0279]
-
-rotulados = [50, 100, 150, 200, 250, 300]
 porcentagem = [0.0047, 0.0093, 0.0140, 0.0186, 0.0233, 0.0279]
 
 resultado = pd.DataFrame()
@@ -40,7 +37,7 @@ acuraciat = []
 kappai = []
 kappat = []
 
-modelo = 'mlp'
+
 
 for r, p in enumerate(porcentagem):
     
@@ -59,7 +56,7 @@ for r, p in enumerate(porcentagem):
         classificador = MLPClassifier(hidden_layer_sizes=(10,), max_iter=100)
     elif modelo == 'knn':
         classificador = KNeighborsClassifier(n_neighbors=5)
-    elif modelo == 'knn':
+    elif modelo == 'svm':
         classificador = SVC(probability=True)
     elif modelo == 'rf':
         classificador = RandomForestClassifier(n_estimators=20)
