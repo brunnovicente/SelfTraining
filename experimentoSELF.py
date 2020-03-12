@@ -93,4 +93,4 @@ resultado['KT'] = kappat
 resultado['KI'] = acuraciai
 resultado['KI'] = kappai
 
-resultado.to_csv('drive/My Drive/Doutorado/Implementação/ExperimentosKBS/resultado_self_'+modelo+'_'+base+'.csv')
+resultado.to_csv('resultados/resultado_self_'+modelo+'_'+base+'.csv')
