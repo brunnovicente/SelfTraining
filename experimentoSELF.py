@@ -17,13 +17,13 @@ from sklearn.utils import shuffle
 from SelfTraining import StandardSelfTraining
 
 sca = MinMaxScaler()
-
-dados = pd.read_csv('d:/basedados/agricultura.csv')
+base = 'mnist'
+caminho = 'D:/Drive UFRN/bases/'
+dados = pd.read_csv(caminho + base +'.csv')
 X = sca.fit_transform(dados.drop(['classe'], axis=1).values)
 Y = dados['classe'].values
 
 X_train, X_test, y_train, y_test = train_test_split(X,Y, train_size=0.9, test_size=0.1, stratify=Y)
-
 
 dados = pd.DataFrame(X)
 dados['classe'] = Y
@@ -57,9 +57,7 @@ for r, p in enumerate(porcentagem):
                 
         """ PROCESSO TRANSDUTIVO """
         L, U, y, yu = train_test_split(X_train, y_train, train_size = p, test_size= 1.0 - p, stratify=y_train)
-        
-        
-       
+              
         mlp = MLPClassifier(hidden_layer_sizes=(10,), max_iter=100)
         knn = KNeighborsClassifier(n_neighbors=5)
         svm = SVC(probability=True)
@@ -121,16 +119,16 @@ for r, p in enumerate(porcentagem):
     tempo = np.round((fim - inicio)/60,2)
     print('........ Tempo: '+str(tempo)+' minutos.')
                     
-    resultadoMLP.to_csv('resultados/resultado_SELF_MLP_'+str(rotulados[r])+'.csv', index=False)
-    resultadoKNN.to_csv('resultados/resultado_SELF_KNN_'+str(rotulados[r])+'.csv', index=False)
-    resultadoSVM.to_csv('resultados/resultado_SELF_SVM_'+str(rotulados[r])+'.csv', index=False)
-    resultadoRF.to_csv('resultados/resultado_SELF_RF_'+str(rotulados[r])+'.csv', index=False)
-    resultadoNB.to_csv('resultados/resultado_SELF_NB_'+str(rotulados[r])+'.csv', index=False)
-    resultadoLR.to_csv('resultados/resultado_SEKF_LR_'+str(rotulados[r])+'.csv', index=False)
+    resultadoMLP.to_csv('resultados/resultado_SELF_MLP_'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoKNN.to_csv('resultados/resultado_SELF_KNN_'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoSVM.to_csv('resultados/resultado_SELF_SVM_'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoRF.to_csv('resultados/resultado_SELF_RF_'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoNB.to_csv('resultados/resultado_SELF_NB_'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoLR.to_csv('resultados/resultado_SEKF_LR_'+str(rotulados[r])+base+'.csv', index=False)
     
-    resultadoMLP_T.to_csv('resultados/resultado_SELF_MLP_T'+str(rotulados[r])+'.csv', index=False)
-    resultadoKNN_T.to_csv('resultados/resultado_SELF_KNN_T'+str(rotulados[r])+'.csv', index=False)
-    resultadoSVM_T.to_csv('resultados/resultado_SELF_SVM_T'+str(rotulados[r])+'.csv', index=False)
-    resultadoRF_T.to_csv('resultados/resultado_SELF_RF_T'+str(rotulados[r])+'.csv', index=False)
-    resultadoNB_T.to_csv('resultados/resultado_SELF_NB_T'+str(rotulados[r])+'.csv', index=False)
-    resultadoLR_T.to_csv('resultados/resultado_SEKF_LR_T'+str(rotulados[r])+'.csv', index=False)
+    resultadoMLP_T.to_csv('resultados/resultado_SELF_MLP_T'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoKNN_T.to_csv('resultados/resultado_SELF_KNN_T'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoSVM_T.to_csv('resultados/resultado_SELF_SVM_T'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoRF_T.to_csv('resultados/resultado_SELF_RF_T'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoNB_T.to_csv('resultados/resultado_SELF_NB_T'+str(rotulados[r])+base+'.csv', index=False)
+    resultadoLR_T.to_csv('resultados/resultado_SEKF_LR_T'+str(rotulados[r])+base+'.csv', index=False)
