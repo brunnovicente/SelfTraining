@@ -19,7 +19,7 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 
 sca = MinMaxScaler()
 base = 'mnist'
-modelo = 'knn'
+modelo = 'KNN'
 
 caminho = 'C:/Users/lam_ii/Documents/Bruno Vicente/basedados/'
 dados = pd.read_csv(caminho + base +'.csv')
@@ -38,7 +38,6 @@ kappai = []
 kappat = []
 
 
-
 for r, p in enumerate(porcentagem):
     
     
@@ -51,27 +50,31 @@ for r, p in enumerate(porcentagem):
             
     """ PROCESSO TRANSDUTIVO """
     L, U, y, yu = train_test_split(X_train, y_train, train_size = p, test_size= 1.0 - p, stratify=y_train)
-
-    if modelo == 'mlp':      
+    #print('Dividiu os dados...')
+    if modelo == 'MLP':      
         classificador = MLPClassifier(hidden_layer_sizes=(10,), max_iter=100)
-    elif modelo == 'knn':
+    elif modelo == 'KNN':
         classificador = KNeighborsClassifier(n_neighbors=5)
-    elif modelo == 'svm':
+        #print('Pegou o KNN')
+    elif modelo == 'SVM':
         classificador = SVC(probability=True)
-    elif modelo == 'rf':
+    elif modelo == 'RF':
         classificador = RandomForestClassifier(n_estimators=20)
-    elif modelo == 'nb':
+    elif modelo == 'NB':
         classificador = GaussianNB()
     else:
         classificador = LogisticRegression()
         
     selfT = StandardSelfTraining(modelo, classificador)
+    #print('Gerou o modelo')
     
     X_treino = np.concatenate((L, U))
     Y_treino = np.concatenate((y.astype(str), np.full_like(yu.astype(str), "unlabeled")))
-            
+    
+    #print('Iniciou o treinamento..')        
     selfT.fit(X_treino, Y_treino)
-        
+    
+    #print('Guardando os dados')
     """ FASE TRANDUTIVA """
     acuraciat.append(accuracy_score(yu, selfT.predict(U).astype('int64')))
     kappat.append(cohen_kappa_score(yu, selfT.predict(U).astype('int64')))
@@ -90,4 +93,4 @@ resultado['KT'] = kappat
 resultado['KI'] = acuraciai
 resultado['KI'] = kappai
 
-resultado.to_csv('resultados/resultado_self_'+modelo+'_'+base+'.csv')
+resultado.to_csv('resultados/'+modelo+'/'+base+'_'+str(rotulados)+'.csv')
