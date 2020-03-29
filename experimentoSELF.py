@@ -18,7 +18,7 @@ from SelfTraining import StandardSelfTraining
 from sklearn.metrics import accuracy_score, cohen_kappa_score
 
 sca = MinMaxScaler()
-base = 'usps'
+base = 'mnist'
 modelo = 'KNN'
 
 caminho = 'C:/Users/Servidor-LSI/Documents/Bruno Vicente/bases/'
@@ -26,8 +26,6 @@ dados = pd.read_csv(caminho + base +'.csv')
 X = sca.fit_transform(dados.drop(['classe'], axis=1).values)
 Y = dados['classe'].values
 
-dados = pd.DataFrame(X)
-dados['classe'] = Y
 rotulados = [50 , 100, 150, 200, 250, 300]
 porcentagem = [0.0047, 0.0093, 0.0140, 0.0186, 0.0233, 0.0279]
 
