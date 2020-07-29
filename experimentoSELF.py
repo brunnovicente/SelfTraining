@@ -19,9 +19,9 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 
 sca = MinMaxScaler()
 base = 'mnist'
-modelo = 'KNN'
+modelo = 'RF'
 
-caminho = 'C:/Users/Servidor-LSI/Documents/Bruno Vicente/bases/'
+caminho = 'D:/Drive UFRN/bases/'
 dados = pd.read_csv(caminho + base +'.csv')
 X = sca.fit_transform(dados.drop(['classe'], axis=1).values)
 Y = dados['classe'].values
@@ -88,7 +88,7 @@ for r, p in enumerate(porcentagem):
 resultado['R'] = rotulados
 resultado['AT'] = acuraciat
 resultado['KT'] = kappat
-resultado['KI'] = acuraciai
+resultado['AI'] = acuraciai
 resultado['KI'] = kappai
 
-resultado.to_csv('resultados/'+modelo+'/'+base+'_'+str(rotulados)+'.csv')
+resultado.to_csv('resultados/RF/'+base+'.csv')
